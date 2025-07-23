@@ -1,11 +1,13 @@
 // api/index.js
 const express = require('express');
 const app = express();
-const serverless = require('serverless-http');
 
 app.get(/(.*)/, (req, res) => {
-    res.redirect(`https://laisbolosecongelados.com.br${req.url}`);
+    res.redirect(301, `https://laisbolosecongelados.com.br${req.url}`);
 });
 
 
-module.exports.handler = serverless(app);
+
+app.listen(process.env.PORT || 3000, () => console.log("Server ready on port 3000."))
+
+module.exports = app;
